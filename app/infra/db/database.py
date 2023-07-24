@@ -1,6 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
+from app.infra.db.base import Base
+from app.models.domain.user import User
+
 
 class Database:
     sessoin_maker: sessionmaker = None
@@ -12,6 +15,7 @@ class Database:
     ):
         db_engine = create_engine(uri)
         cls.sessoin_maker = sessionmaker(bind=db_engine)
+        Base.metadata.create_all(db_engine)
 
     @classmethod
     def get_session(
