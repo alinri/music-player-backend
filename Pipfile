@@ -10,6 +10,7 @@ sqlalchemy = "*"
 passlib = {extras = ["bcrypt"], version = "*"}
 mysqlclient = "*"
 pydantic-settings = "*"
+python-jose = {extras = ["cryptography"], version = "*"}
 
 [dev-packages]
 black = "*"
