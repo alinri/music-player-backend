@@ -7,7 +7,7 @@ from app.models.scheme.auth.token_data import TokenData
 
 from .token.verify import AccessTokenVerify
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/token")
 
 
 def authenticate(
