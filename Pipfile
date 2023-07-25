@@ -11,6 +11,7 @@ passlib = {extras = ["bcrypt"], version = "*"}
 mysqlclient = "*"
 pydantic-settings = "*"
 python-jose = {extras = ["cryptography"], version = "*"}
+python-multipart = "*"
 
 [dev-packages]
 black = "*"
