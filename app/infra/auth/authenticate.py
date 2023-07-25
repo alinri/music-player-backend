@@ -14,4 +14,4 @@ def authenticate(
     token: Annotated[str, Depends(oauth2_scheme)],
 ) -> TokenData:
     access_token_verify = AccessTokenVerify()
-    access_token_verify.verify(token)
+    return access_token_verify.verify(token)
