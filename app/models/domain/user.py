@@ -14,5 +14,5 @@ class User(Base):
     )
     username: Mapped[str] = mapped_column(String(255))
     password: Mapped[str] = mapped_column(Text())
-    phone_number: Mapped[Optional[str]]
+    phone_number: Mapped[Optional[str]] = mapped_column(String(11))
     full_name: Mapped[str] = mapped_column(String(255))
