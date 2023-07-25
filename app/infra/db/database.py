@@ -2,11 +2,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
 from app.infra.db.base import Base
+from app.models.domain.music import Music
 from app.models.domain.user import User
 
 
 class Database:
-    sessoin_maker: sessionmaker = None
+    sessoin_maker: sessionmaker | None = None
 
     @classmethod
     def init(
