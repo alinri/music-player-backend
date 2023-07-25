@@ -9,6 +9,7 @@ uvicorn = {extras = ["standard"], version = "*"}
 sqlalchemy = "*"
 passlib = {extras = ["bcrypt"], version = "*"}
 mysqlclient = "*"
+pydantic-settings = "*"
 
 [dev-packages]
 black = "*"
