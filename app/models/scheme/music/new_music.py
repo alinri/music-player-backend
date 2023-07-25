@@ -6,8 +6,8 @@ from fastapi import File, Form, UploadFile
 class NewMusicScheme:
     def __init__(
         self,
-        title: Annotated[str, Form()],
-        artist: Annotated[str | None, Form(default=None)],
+        title: Annotated[str, Form(max_length=255, min_length=4)],
+        artist: Annotated[str | None, Form(default=None, max_length=255)],
         music_file: Annotated[UploadFile, File()],
     ) -> None:
         self.title = title
