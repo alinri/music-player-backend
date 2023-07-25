@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
-from infra.auth.password.hash import HashPassword
 
+from app.infra.auth.password.hash import HashPassword
 from app.infra.repo.interface.user import IUserRepo
 from app.models.domain.user import User
 from app.models.scheme.user.new_user import NewUserScheme
@@ -31,8 +31,8 @@ class NewUserUsecase:
         )
         user = User(
             username=new_user.username,
-            passowrd=hashed_password,
+            password=hashed_password,
             phone_number=new_user.phone_number,
-            full_name=new_user.phone_number,
+            full_name=new_user.full_name,
         )
         self._user_repo.insert_user(user)
