@@ -25,6 +25,8 @@ class MusicRepo(IMusicRepo):
         self._session.add(new_music)
         self._session.commit()
 
-    def list(self) -> list[Music]:
-        stmt = select(Music)
+    def list_by_user_id(self, user_id: int) -> list[Music]:
+        stmt = select(Music).where(
+            Music.user_id == user_id,
+        )
         return self._session.scalars(stmt).all()

@@ -17,7 +17,5 @@ class IMusicRepo(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def list(
-        self,
-    ) -> list[Music]:
+    def list_by_user_id(self, user_id: int) -> list[Music]:
         raise NotImplementedError
