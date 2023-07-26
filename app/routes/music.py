@@ -19,7 +19,7 @@ router = APIRouter(prefix="/music", tags=["music"])
     "/",
     status_code=status.HTTP_204_NO_CONTENT,
 )
-def login_user(
+def new_music(
     new_music: Annotated[NewMusicScheme, Depends()],
     token_data: Annotated[TokenData, Depends(authenticate)],
     session: Annotated[Session, Depends(db_session)],
