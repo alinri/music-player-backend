@@ -8,5 +8,5 @@ class NewPlayListScheme(BaseModel):
     )
     description: str | None = Field(
         default="",
-        min_length=1024,
+        max_length=1024,
     )
