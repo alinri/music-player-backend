@@ -5,7 +5,7 @@ from app.infra.repo.interface.playlist import IPlayListRepo
 from app.models.domain.playlist import PlayList
 
 
-class MusicRepo(IPlayListRepo):
+class PlayListRepo(IPlayListRepo):
     def __init__(
         self,
         session: Session,
