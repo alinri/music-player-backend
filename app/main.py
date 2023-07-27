@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 
 import uvicorn
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 from app.infra.db.database import Database
 from app.models.settings import Settings
@@ -21,6 +22,13 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 app.include_router(router)
+
+"""Mount upload files"""
+app.mount(
+    "/upload",
+    StaticFiles(directory="app/upload"),
+    name="upload",
+)
 
 if __name__ == "__main__":
     uvicorn.run(
