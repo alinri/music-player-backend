@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import desc, select
 from sqlalchemy.orm import Session, joinedload
 
 from app.infra.repo.interface.playlist_track import IPlayListTrackRepo
@@ -33,3 +33,18 @@ class PlayListTrackRepo(IPlayListTrackRepo):
             .options(joinedload(PlayListTrack.music))
         )
         return self._session.scalars(stmt).all()
+
+    def get_last_playlist_track(
+        self,
+        playlist_id: int,
+    ) -> PlayListTrack | None:
+        stmt = (
+            select(PlayListTrack)
+            .where(
+                PlayListTrack.playlist_id == playlist_id,
+            )
+            .order_by(
+                desc(PlayListTrack.index),
+            )
+        )
+        return self._session.scalars(stmt).first()
