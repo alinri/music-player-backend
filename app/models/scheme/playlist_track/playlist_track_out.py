@@ -11,7 +11,7 @@ class PlayListTrackOutScheme(BaseModel):
     title: str = Field(
         max_length=255,
     )
-    artist: str = Field(
+    artist: str | None = Field(
         max_length=255,
     )
     file_name: str = Field(
