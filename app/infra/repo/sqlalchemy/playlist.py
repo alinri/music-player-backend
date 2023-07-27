@@ -25,3 +25,10 @@ class PlayListRepo(IPlayListRepo):
     ) -> list[PlayList]:
         stmt = select(PlayList).where(PlayList.user_id == user_id)
         return self._session.scalars(stmt).all()
+
+    def get_playlist_by_id(
+        self,
+        playlist_id: int,
+    ) -> PlayList | None:
+        stmt = select(PlayList).where(PlayList.playlist_id == playlist_id)
+        return self._session.scalars(stmt).first()
