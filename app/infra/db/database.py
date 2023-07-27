@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session, sessionmaker
 
 from app.infra.db.base import Base
 from app.models.domain.music import Music
+from app.models.domain.playlist_track import PlayListTrack
 from app.models.domain.user import User
 
 
