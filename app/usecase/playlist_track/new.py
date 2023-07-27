@@ -32,7 +32,7 @@ class NewPlayListTrackUsecase:
                 status.HTTP_404_NOT_FOUND,
                 detail="لیست پخش موجود نیست.",
             )
-        music_exist = self._playlist_repo.get_playlist_by_id(
+        music_exist = self._music_repo.get_by_music_id(
             new_track.music_id,
         )
         if not music_exist:
