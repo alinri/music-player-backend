@@ -17,3 +17,9 @@ class IPlayListTrackRepo(ABC):
         playlist_id: int,
     ) -> list[PlayListTrack]:
         raise NotImplementedError
+
+    def get_last_playlist_track(
+        self,
+        playlist_id: int,
+    ) -> PlayListTrack | None:
+        raise NotImplementedError
