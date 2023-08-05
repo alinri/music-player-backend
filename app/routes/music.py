@@ -9,6 +9,7 @@ from app.infra.repo.sqlalchemy.music import MusicRepo
 from app.models.scheme.auth.token_data import TokenData
 from app.models.scheme.music.music_out import MusicOutScheme
 from app.models.scheme.music.new_music import NewMusicScheme
+from app.usecase.music.get import GetMusicUsecase
 from app.usecase.music.list import ListMusicUsecase
 from app.usecase.music.new import NewMusicUsecase
 
@@ -46,3 +47,19 @@ def list_user_music(
         MusicRepo(session),
     )
     return list_music_usecase.execute(token_data.user_id)
+
+
+@router.get(
+    "/{music_id}",
+    status_code=status.HTTP_200_OK,
+    response_model=MusicOutScheme,
+)
+def get_user_music(
+    music_id: int,
+    token_data: Annotated[TokenData, Depends(authenticate)],
+    session: Annotated[Session, Depends(db_session)],
+):
+    get_music_usecase = GetMusicUsecase(
+        MusicRepo(session),
+    )
+    return get_music_usecase.execute(music_id)
