@@ -34,11 +34,11 @@ app.add_middleware(
 app.include_router(router)
 
 """Mount upload files"""
-# app.mount(
-#     "/upload",
-#     StaticFiles(directory="app/upload"),
-#     name="upload",
-# )
+app.mount(
+    "/upload",
+    StaticFiles(directory="app/upload"),
+    name="upload",
+)
 
 if __name__ == "__main__":
     uvicorn.run(

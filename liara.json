@@ -1,0 +1,10 @@
+{
+    "platform": "docker",
+    "app":"music-player-backedn",
+    "disks": [
+        {
+            "name": "my-disk",
+            "mountTo":"/app/upload"
+        }
+    ]
+}
