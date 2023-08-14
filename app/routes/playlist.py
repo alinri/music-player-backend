@@ -13,6 +13,7 @@ from app.models.scheme.playlist.playlist_out import PlayListOutScheme
 from app.models.scheme.playlist_track.playlist_track_out import (
     PlayListTrackOutScheme,
 )
+from app.usecase.playlist.get import GetPlayListUsecase
 from app.usecase.playlist.list import ListPlayListUsecase
 from app.usecase.playlist.new import NewPlayListUsecase
 from app.usecase.playlist_track.list import ListPlayListTrackUsecase
@@ -52,6 +53,24 @@ def list_playlist(
     )
     return list_playlist_usecase.execute(
         token_data.user_id,
+    )
+
+
+@router.get(
+    "/{playlist_id}",
+    status_code=status.HTTP_200_OK,
+    response_model=PlayListOutScheme,
+)
+def get_playlist(
+    playlist_id: int,
+    token_data: Annotated[TokenData, Depends(authenticate)],
+    session: Annotated[Session, Depends(db_session)],
+):
+    get_playlist_usecase = GetPlayListUsecase(
+        PlayListRepo(session),
+    )
+    return get_playlist_usecase.execute(
+        playlist_id,
     )
 
 
