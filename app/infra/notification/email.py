@@ -3,7 +3,7 @@ import ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from models.settings import Settings
+from app.models.settings import Settings
 
 from .interface import INotificaiton
 
