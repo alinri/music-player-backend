@@ -1,4 +1,4 @@
-from sqlalchemy import desc, select
+from sqlalchemy import delete, desc, select
 from sqlalchemy.orm import Session, joinedload
 
 from app.infra.repo.interface.playlist_track import IPlayListTrackRepo
@@ -48,3 +48,12 @@ class PlayListTrackRepo(IPlayListTrackRepo):
             )
         )
         return self._session.scalars(stmt).first()
+
+    def delete_playlist_track(
+        self,
+        track_id: int,
+    ):
+        stmt = delete(PlayListTrack).where(
+            PlayListTrack.playlist_track_id == track_id
+        )
+        self._session.execute(stmt)
