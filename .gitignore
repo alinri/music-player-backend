@@ -111,7 +111,7 @@ venv.bak/
 .vscode
 
 # Upload files
-app/upload/*.mp3
+app/upload/*
 
 # Deployment config
 liara.json
