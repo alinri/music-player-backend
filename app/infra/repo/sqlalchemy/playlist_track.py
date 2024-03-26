@@ -1,4 +1,4 @@
-from sqlalchemy import delete, desc, select
+from sqlalchemy import delete, desc, select, update
 from sqlalchemy.orm import Session, joinedload
 
 from app.infra.repo.interface.playlist_track import IPlayListTrackRepo
@@ -53,10 +53,17 @@ class PlayListTrackRepo(IPlayListTrackRepo):
         self,
         track_id: int,
     ):
+        track = self.get_track_by_id(track_id)
+        update_indexes_stmt = (
+            update(PlayListTrack)
+            .where(PlayListTrack.index > track.index)
+            .values(index=PlayListTrack.index - 1)
+        )
         stmt = delete(PlayListTrack).where(
             PlayListTrack.playlist_track_id == track_id
         )
         self._session.execute(stmt)
+        self._session.execute(update_indexes_stmt)
         self._session.commit()
 
     def get_track_by_id(
