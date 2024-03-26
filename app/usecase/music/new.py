@@ -19,15 +19,17 @@ class NewMusicUsecase:
         new_music: NewMusicScheme,
         user_id: int,
     ):
+        accepted_formats = ["mp3", "m4a", "aac"]
         if (
             not new_music.music_file.filename
-            or new_music.music_file.filename.split(".")[-1] != "mp3"
+            or (file_format := new_music.music_file.filename.split(".")[-1])
+            not in accepted_formats
         ):
             raise HTTPException(
                 status.HTTP_422_UNPROCESSABLE_ENTITY,
                 detail="فرمت فایل معتبر نیست.",
             )
-        new_music_file_name = f"{uuid4()}.mp3"
+        new_music_file_name = f"{uuid4()}.{file_format}"
         music = Music(
             user_id=user_id,
             title=new_music.title,
