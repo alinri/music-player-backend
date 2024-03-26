@@ -31,3 +31,10 @@ class IPlayListTrackRepo(ABC):
         track_id: int,
     ):
         raise NotImplementedError
+
+    @abstractmethod
+    def get_track_by_id(
+        self,
+        track_id: int,
+    ) -> PlayListTrack:
+        raise NotImplementedError
