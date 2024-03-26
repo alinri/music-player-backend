@@ -1,9 +1,9 @@
 {
     "platform": "docker",
-    "app":"music-player-backedn",
+    "app":"music-player-backend",
     "disks": [
         {
-            "name": "my-disk",
+            "name": "music",
             "mountTo":"/app/upload"
         }
     ]
