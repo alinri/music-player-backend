@@ -62,7 +62,7 @@ class PlayListTrackRepo(IPlayListTrackRepo):
     def get_track_by_id(
         self,
         track_id: int,
-    ) -> PlayListTrack:
+    ) -> PlayListTrack | None:
         stmt = select(PlayListTrack).where(
             PlayListTrack.playlist_track_id == track_id
         )
