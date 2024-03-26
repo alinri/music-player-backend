@@ -57,3 +57,12 @@ class PlayListTrackRepo(IPlayListTrackRepo):
             PlayListTrack.playlist_track_id == track_id
         )
         self._session.execute(stmt)
+
+    def get_track_by_id(
+        self,
+        track_id: int,
+    ) -> PlayListTrack:
+        stmt = select(PlayListTrack).where(
+            PlayListTrack.playlist_track_id == track_id
+        )
+        return self._session.execute(stmt).scalars().first()
