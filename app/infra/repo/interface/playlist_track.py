@@ -18,8 +18,16 @@ class IPlayListTrackRepo(ABC):
     ) -> list[PlayListTrack]:
         raise NotImplementedError
 
+    @abstractmethod
     def get_last_playlist_track(
         self,
         playlist_id: int,
     ) -> PlayListTrack | None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def delete_playlist_track(
+        self,
+        track_id: int,
+    ):
         raise NotImplementedError
