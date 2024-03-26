@@ -57,6 +57,7 @@ class PlayListTrackRepo(IPlayListTrackRepo):
             PlayListTrack.playlist_track_id == track_id
         )
         self._session.execute(stmt)
+        self._session.commit()
 
     def get_track_by_id(
         self,
