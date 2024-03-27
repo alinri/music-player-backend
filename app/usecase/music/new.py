@@ -37,6 +37,14 @@ class NewMusicUsecase:
             file_name=new_music_file_name,
         )
         music_path = f"app/upload/{new_music_file_name}"
-        with open(music_path, "wb") as f:
-            f.write(new_music.music_file.file.read())
+        try:
+            with open(music_path, "wb") as f:
+                f.write(new_music.music_file.file.read())
+        except Exception:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Error in uploading file",
+            )
+        finally:
+            new_music.music_file.file.close()
         self._music_repo.insert(music)
