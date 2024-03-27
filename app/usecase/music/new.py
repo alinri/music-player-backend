@@ -1,3 +1,4 @@
+import shutil
 from uuid import uuid4
 
 from fastapi import HTTPException, status
@@ -39,7 +40,7 @@ class NewMusicUsecase:
         music_path = f"app/upload/{new_music_file_name}"
         try:
             with open(music_path, "wb") as f:
-                f.write(new_music.music_file.file.read())
+                shutil.copyfileobj(new_music.music_file.file, f)
         except Exception:
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
