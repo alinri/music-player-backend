@@ -1,15 +1,13 @@
-FROM python:3.10.6
+FROM python:3.10.6-alpine
 
-RUN apt-get update
-RUN apt-get install -y python3-dev default-libmysqlclient-dev build-essential
-RUN apt-get install -y pkg-config
+RUN apk update && \
+    apk add --no-cache python3-dev py3-pip build-base mariadb-dev && \
+    apk add --no-cache pkgconfig
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt && \
+    rm /tmp/requirements.txt
 
-RUN rm requirements.txt
+COPY app /app
 
-COPY app  /app
-
-
-CMD [ "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
